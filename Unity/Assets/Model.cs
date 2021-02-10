@@ -33,7 +33,44 @@ public class Model : MonoBehaviour
     }
 
 
-    public void updateTable(int ID){
+    public void updateTable(string info){
+
+        string[] values = info.Split(";");
+
+        switch (values[1])
+        {
+            case "switch_sensor":
+
+                break;
+
+            case "state_sensor":
+
+                break;
+                
+            case "power_sensor":
+
+                break;
+            
+            case "other_sensor":
+
+                break;
+
+            case "dual_sensor":
+
+                break;
+
+        
+
+            default:
+
+                print("Some faulty type has entered the model!");
+                break;
+
+
+        }
+
+
+
 
 
         //ta in informationen om sensorn

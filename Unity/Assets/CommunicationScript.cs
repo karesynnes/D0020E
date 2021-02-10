@@ -69,7 +69,11 @@ public class CommunicationScript : MonoBehaviour
                 
                 string text = Encoding.UTF8.GetString(data);
  
-              
+                model.updateTable(text);
+
+
+
+
                 print(">> " + text);
 
                 if(text.Equals("stop")){
