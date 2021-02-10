@@ -18,6 +18,8 @@ public class CommunicationScript : MonoBehaviour
 
     int port = 42069;
 
+    Model m = new Model();
+
 
     // Start is called before the first frame update
     void Start()
@@ -32,6 +34,12 @@ public class CommunicationScript : MonoBehaviour
     {
 
 
+    }
+
+    void OnDestroy(){
+
+        print("Killing recv thread");
+        recvThread.Abort();
     }
 
      private void init()

@@ -2,13 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SensorObject : MonoBehaviour
+public class SensorScript : MonoBehaviour
 {
 
     protected int sensorID;
+    protected Model model;
     
-    public SensorObject(int sensorID){
+    public SensorScript(int sensorID, Model model){
         this.sensorID = sensorID;
+        this.model = model;
     }
 
     // Start is called before the first frame update
