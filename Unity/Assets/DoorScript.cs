@@ -5,25 +5,14 @@ using UnityEngine;
 public class DoorScript : SensorScript
 {
 
-    private bool open;
+    private int open;
 
     public DoorScript(int sensorID, Model model) : base(sensorID, model){
         
-        this.open = false;
+        this.open = 0;
 
     }
 
-
-    public void toggleOpen(){
-
-        if(this.open = false){
-            this.open = true;
-        } 
-        else{
-            this.open = false;
-        }
-
-    }
 
     // Start is called before the first frame update
     void Start()
@@ -34,8 +23,18 @@ public class DoorScript : SensorScript
     // Update is called once per frame
     void Update()
     {
-
         
+        this.open = base.model.getInfo(base.sensorID)[0];
+
+
+        if(this.open == 1){
+             transform.eulerAngles = new Vector3(transform.eulerAngles.x, 90, transform.eulerAngles.z);
+        }
+        else{
+             transform.eulerAngles = new Vector3(transform.eulerAngles.x, 180, transform.eulerAngles.z);
+        }
+
+       
         
     }
 }

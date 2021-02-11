@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Model : MonoBehaviour
@@ -16,7 +17,44 @@ public class Model : MonoBehaviour
 
     }
 
-    public void addItem(int ID){
+    public void addItem(int ID, string type){
+
+        switch (type)
+            {
+                case "switch_sensor":
+                    table[ID] = new int[2];
+
+                    break;
+
+                case "state_sensor":
+                    table[ID] = new int[2];
+
+                    break;
+                    
+                case "power_sensor":
+                    table[ID] = new int[2];
+
+                    break;
+                
+                case "other_sensor":
+                    table[ID] = new int[1];
+
+                    break;
+
+                case "dual_sensor":
+                    table[ID] = new int[4];
+
+                    break;
+
+            
+
+                default:
+
+                    print("Some faulty type has entered the model!");
+                    break;
+
+
+            }
 
         //switch case baserat på ID
 
@@ -25,52 +63,65 @@ public class Model : MonoBehaviour
 
     }
 
-    /*public int[] getInfo(int sensorID){
+    public int[] getInfo(int sensorID){
 
         //hämta info från modellen baserat på nyckeln = ID
+        return this.table[sensorID];
 
-
-    }*/
+    }
 
 
     public void updateTable(string info){
 
         string[] values = info.Split(';');
 
-        switch (values[1])
-        {
-            case "switch_sensor":
+        int sensorID = Int32.Parse(values[0]);
 
-                break;
+        if(table.ContainsKey(sensorID)){
 
-            case "state_sensor":
+            switch (values[1])
+            {
+                case "switch_sensor":
+                    table[sensorID] = new int[] {Int32.Parse(values[2]),Int32.Parse(values[3])};
 
-                break;
+                    break;
+
+                case "state_sensor":
+                    table[sensorID] = new int[] {Int32.Parse(values[2]),Int32.Parse(values[3])};
+
+                    break;
+                    
+                case "power_sensor":
+                    table[sensorID] = new int[] {Int32.Parse(values[2]),Int32.Parse(values[3])};
+
+                    break;
                 
-            case "power_sensor":
+                case "other_sensor":
+                    table[sensorID] = new int[] {Int32.Parse(values[2])};
 
-                break;
+                    break;
+
+                case "dual_sensor":
+                    table[sensorID] = new int[] {Int32.Parse(values[2]),Int32.Parse(values[3]),Int32.Parse(values[4]),Int32.Parse(values[5])};
+
+                    break;
+
             
-            case "other_sensor":
 
-                break;
+                default:
 
-            case "dual_sensor":
+                    print("Some faulty type has entered the model!");
+                    break;
 
-                break;
 
-        
-
-            default:
-
-                print("Some faulty type has entered the model!");
-                break;
+            }
 
 
         }
+        else{
 
-
-
+            addItem(sensorID,values[1]);
+        }
 
 
         //ta in informationen om sensorn
