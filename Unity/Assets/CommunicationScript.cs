@@ -18,7 +18,7 @@ public class CommunicationScript : MonoBehaviour
 
     int port = 42069;
 
-    Model m = new Model();
+    Model model = new Model();
 
 
     // Start is called before the first frame update

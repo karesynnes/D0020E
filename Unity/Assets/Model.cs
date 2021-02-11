@@ -25,17 +25,17 @@ public class Model : MonoBehaviour
 
     }
 
-    public int[] getInfo(int sensorID){
+    /*public int[] getInfo(int sensorID){
 
         //hämta info från modellen baserat på nyckeln = ID
 
 
-    }
+    }*/
 
 
     public void updateTable(string info){
 
-        string[] values = info.Split(";");
+        string[] values = info.Split(';');
 
         switch (values[1])
         {

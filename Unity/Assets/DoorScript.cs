@@ -35,7 +35,7 @@ public class DoorScript : SensorScript
     void Update()
     {
 
-        model.getInfo(base.sensorID);
+        
         
     }
 }
