@@ -53,7 +53,7 @@ public class CommunicationScript : MonoBehaviour
     }
 
 
-    private  void ReceiveData()
+    private void ReceiveData()
     {
  
         client = new UdpClient(port);
