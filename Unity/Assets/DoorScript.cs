@@ -36,6 +36,7 @@ public class DoorScript : SensorScript
        // print(base.model.getTest());
        try{
        print(script.getModel().getInfo(base.sensorID));
+       this.open = script.getModel().getInfo(base.sensorID)[1];
         
 
         if(this.open == 1){
