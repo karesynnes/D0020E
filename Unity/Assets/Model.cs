@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class Model : MonoBehaviour
+public class Model
 {
 
 
@@ -13,8 +13,13 @@ public class Model : MonoBehaviour
     private Dictionary<int, int[]> table;
 
     public Model(){
+
         table = new Dictionary<int, int[]>();
 
+    }
+
+    public int getTest(){
+        return 2;
     }
 
     public void addItem(int ID, string type){
@@ -50,7 +55,7 @@ public class Model : MonoBehaviour
 
                 default:
 
-                    print("Some faulty type has entered the model!");
+                    //print("Some faulty type has entered the model!");
                     break;
 
 
@@ -65,8 +70,14 @@ public class Model : MonoBehaviour
 
     public int[] getInfo(int sensorID){
 
+
+        if(table.ContainsKey(sensorID)){
+             return this.table[sensorID];
+        }
         //hämta info från modellen baserat på nyckeln = ID
-        return this.table[sensorID];
+       else{
+           throw new Exception("No such key");
+       }
 
     }
 
@@ -110,7 +121,7 @@ public class Model : MonoBehaviour
 
                 default:
 
-                    print("Some faulty type has entered the model!");
+                    //print("Some faulty type has entered the model!");
                     break;
 
 
