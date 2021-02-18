@@ -55,8 +55,3 @@ def widefind_conn():
         client.loop_stop()
         flag = False
         print("turning off")
-        
-
-    
-    
-
