@@ -16,7 +16,7 @@ public class CommunicationScript : MonoBehaviour
 
     UdpClient client, send;
 
-    int port = 42069;
+    int port = 42070;
 
     Model model;
 
@@ -40,7 +40,7 @@ public class CommunicationScript : MonoBehaviour
 
         print("Killing recv thread");
         print("Killing sendThread");
-        recvThread.Abort();
+        //recvThread.Abort();
         sendThread.Abort();
     }
 
@@ -48,9 +48,9 @@ public class CommunicationScript : MonoBehaviour
     {
         model = new Model();
        
-        recvThread = new Thread(new ThreadStart(ReceiveData));
+        /*recvThread = new Thread(new ThreadStart(ReceiveData));
         recvThread.IsBackground = true;
-        recvThread.Start();
+        recvThread.Start();*/
  
 
         sendThread = new Thread(new ThreadStart(SendData));
@@ -66,11 +66,13 @@ public class CommunicationScript : MonoBehaviour
 
     private void SendData()
     {
-        send = new UdpClient("130.240.114.52",port);
+        send = new UdpClient(port);
+        send.Connect("130.240.114.52",42069);
 
         string a = "fibaro;299";
         
         byte[] c = Encoding.ASCII.GetBytes(a);
+        IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 0);
 
 
         while(true){
@@ -78,7 +80,19 @@ public class CommunicationScript : MonoBehaviour
             //print("Sending : " + a);
 
             Thread.Sleep(1000);
+            print("SENDING : " + a);
             send.Send(c, c.Length);
+
+
+
+            byte[] data = send.Receive(ref anyIP);
+  
+                
+            string text = Encoding.UTF8.GetString(data);
+            print("RECEIVING : " + text);
+ 
+            model.updateTable(text);
+                
 
         }
 
@@ -89,6 +103,8 @@ public class CommunicationScript : MonoBehaviour
     {
        
         client = new UdpClient(port);
+
+        IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 42069);
         while (true)
         {
  
@@ -96,16 +112,17 @@ public class CommunicationScript : MonoBehaviour
             {
 
                 
-                IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 0);
+               
                 byte[] data = client.Receive(ref anyIP);
  
 
  
                 
                 string text = Encoding.UTF8.GetString(data);
-                //print("Receiving : " + text);
+                print("Receiving : " + text);
  
                 model.updateTable(text);
+                
 
 
 

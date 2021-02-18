@@ -12,7 +12,7 @@ public class DoorScript : SensorScript
     CommunicationScript script;
 
    
-    public DoorScript(int sensorID){
+    public DoorScript(){
         
         this.open = 0;
        
@@ -39,12 +39,11 @@ public class DoorScript : SensorScript
        try{
        //print(script.getModel().getInfo(base.sensorID));
        //print(base.sensorID);
-        print("hehe");
-       this.open = script.getModel().getInfo(299)[0];
-
-       print(this.open);
        
-         print("hoho");
+       this.open = script.getModel().getInfo(base.sensorID)[0];
+
+       //print(this.open);       
+        
 
         if(this.open == 1){
              transform.eulerAngles = new Vector3(transform.eulerAngles.x, 90, transform.eulerAngles.z);

@@ -88,9 +88,7 @@ public class Model
         string[] values = info.Split(';');
 
         int sensorID = Int32.Parse(values[0]);
-
-
-        Debug.Log(table.ContainsKey(sensorID));
+        
 
         if(table.ContainsKey(sensorID)){
 

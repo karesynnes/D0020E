@@ -8,10 +8,10 @@ public class SensorScript : MonoBehaviour
     public int sensorID;
     protected Model model;
 
+    
 
     
     public SensorScript(){
-        
     
 
 
