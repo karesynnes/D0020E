@@ -75,8 +75,9 @@ public class CommunicationScript : MonoBehaviour
 
         while(true){
 
-            print("Sending : " + a);
+            //print("Sending : " + a);
 
+            Thread.Sleep(1000);
             send.Send(c, c.Length);
 
         }
@@ -102,14 +103,14 @@ public class CommunicationScript : MonoBehaviour
  
                 
                 string text = Encoding.UTF8.GetString(data);
-                print("Receiving : " + text);
+                //print("Receiving : " + text);
  
                 model.updateTable(text);
 
 
 
 
-                print(">> " + text);
+                //print(">> " + text);
 
                 if(text.Equals("stop")){
                     break;

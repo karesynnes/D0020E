@@ -10,10 +10,13 @@ public class DoorScript : SensorScript
      GameObject a;
     CommunicationScript script;
 
+    int k;
+
    
     public DoorScript(int sensorID) : base(299){
         
         this.open = 0;
+        this.k = 299;
         
 
     }
@@ -35,9 +38,14 @@ public class DoorScript : SensorScript
         //this.open = base.model.getInfo(base.sensorID)[0];
        // print(base.model.getTest());
        try{
-       print(script.getModel().getInfo(base.sensorID));
-       this.open = script.getModel().getInfo(base.sensorID)[1];
-        
+       //print(script.getModel().getInfo(base.sensorID));
+       //print(base.sensorID);
+        print("hehe");
+       this.open = script.getModel().getInfo(299)[0];
+
+       print(this.open);
+       
+         print("hoho");
 
         if(this.open == 1){
              transform.eulerAngles = new Vector3(transform.eulerAngles.x, 90, transform.eulerAngles.z);
@@ -48,7 +56,7 @@ public class DoorScript : SensorScript
 
        }
        catch(Exception e){
-          // print(e);
+           print(e);
 
 
        }

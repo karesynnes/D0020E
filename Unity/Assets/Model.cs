@@ -32,6 +32,7 @@ public class Model
                     break;
 
                 case "state_sensor":
+                    Debug.Log("added id:" + ID);
                     table[ID] = new int[2];
 
                     break;
@@ -88,6 +89,9 @@ public class Model
 
         int sensorID = Int32.Parse(values[0]);
 
+
+        Debug.Log(table.ContainsKey(sensorID));
+
         if(table.ContainsKey(sensorID)){
 
             switch (values[1])
@@ -98,7 +102,16 @@ public class Model
                     break;
 
                 case "state_sensor":
-                    table[sensorID] = new int[] {Int32.Parse(values[2]),Int32.Parse(values[3])};
+                    
+                    if(bool.Parse(values[2])){
+                         table[sensorID] = new int[] {1,Int32.Parse(values[3])};
+                         
+                    }
+                    else{
+                        table[sensorID] = new int[] {0,Int32.Parse(values[3])};
+                       
+                    }
+                   
 
                     break;
                     
