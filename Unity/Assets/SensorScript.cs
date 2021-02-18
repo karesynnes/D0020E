@@ -5,13 +5,13 @@ using UnityEngine;
 public class SensorScript : MonoBehaviour
 {
 
-    protected int sensorID;
+    public int sensorID;
     protected Model model;
 
 
     
-    public SensorScript(int sensorID){
-        this.sensorID = sensorID;
+    public SensorScript(){
+        
     
 
 

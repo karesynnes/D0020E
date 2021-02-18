@@ -6,17 +6,16 @@ using UnityEngine;
 public class DoorScript : SensorScript
 {
 
+
     private int open;
-     GameObject a;
+    GameObject a;
     CommunicationScript script;
 
-    int k;
-
    
-    public DoorScript(int sensorID) : base(299){
+    public DoorScript(int sensorID){
         
         this.open = 0;
-        this.k = 299;
+       
         
 
     }
