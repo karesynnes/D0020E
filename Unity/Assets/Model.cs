@@ -87,8 +87,14 @@ public class Model
 
         string[] values = info.Split(';');
 
+        if(values[0] == "widefind"){
+            table[-1] = new int[] {Int32.Parse(values[1]), Int32.Parse(values[2]), Int32.Parse(values[3])};
+            return;
+
+        }
+
         int sensorID = Int32.Parse(values[0]);
-        
+
 
         if(table.ContainsKey(sensorID)){
 
