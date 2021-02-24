@@ -54,7 +54,7 @@ public class DoorScript : SensorScript
 
        }
        catch(Exception e){
-           print(e);
+           print(base.sensorID + " :" + e);
 
 
        }
