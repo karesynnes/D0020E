@@ -41,7 +41,7 @@ public class CommunicationScript : MonoBehaviour
 
         print("Killing recv thread");
         print("Killing sendThread");
-        //recvThread.Abort();
+        //widefindThread.Abort();
         fibaroThread.Abort();
     }
 
@@ -49,9 +49,9 @@ public class CommunicationScript : MonoBehaviour
     {
         model = new Model();
        
-        /*recvThread = new Thread(new ThreadStart(ReceiveData));
-        recvThread.IsBackground = true;
-        recvThread.Start();*/
+        /*widefindThread = new Thread(new ThreadStart(ReceiveData));
+        widefindThread.IsBackground = true;
+        widefindThread.Start();*/
  
 
         fibaroThread = new Thread(new ThreadStart(fibaroComm));
@@ -128,55 +128,7 @@ public class CommunicationScript : MonoBehaviour
         }
 
 
-
-
-
     }
-
-    private void ReceiveData()
-    {
-       
-        client = new UdpClient(port);
-
-        IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 42069);
-        while (true)
-        {
- 
-            try
-            {
-
-                
-               
-                byte[] data = client.Receive(ref anyIP);
- 
-
- 
-                
-                string text = Encoding.UTF8.GetString(data);
-                print("Receiving : " + text);
- 
-                model.updateTable(text);
-                
-
-
-
-
-                //print(">> " + text);
-
-                if(text.Equals("stop")){
-                    break;
-                }
-               
-               
-               
-            }
-            catch (Exception err)
-            {
-                print(err.ToString());
-            }
-        }
-    }
-
 
 
 }
