@@ -120,7 +120,12 @@ public class Model
                     break;
                     
                 case "power_sensor":
-                    table[sensorID] = new int[] {Int32.Parse(values[2]),Int32.Parse(values[3])};
+
+                    values[2] = values[2].Replace(".",",");
+                    values[3] = values[3].Replace(".",",");
+                    
+                 
+                    table[sensorID] = new int[] {(int)double.Parse(values[2]),(int) double.Parse(values[3])};
 
                     break;
                 

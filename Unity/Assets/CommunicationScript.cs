@@ -16,8 +16,8 @@ public class CommunicationScript : MonoBehaviour
 
     UdpClient fibaro, widefind;
 
-    int fibaroPort = 42070;
-    int widefindPort = 42069;
+    int fibaroPort = 42069;
+    int widefindPort = 42070;
 
     Model model;
 
@@ -67,19 +67,29 @@ public class CommunicationScript : MonoBehaviour
 
     private void fibaroComm()
     {
+        
         fibaro = new UdpClient(fibaroPort);
         fibaro.Connect("130.240.114.52",fibaroPort);
 
-        string a = "fibaro;299";
-        
-        byte[] c = Encoding.ASCII.GetBytes(a);
-        IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 0);
+        string a = "fibaro;";
 
+        int[] k = {299,271};
+        int i = 0;
+        
+       
+        IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 0);
+        byte[] c;
 
         while(true){
-
+             i = i%(k.Length);
             //print("Sending : " + a);
+            a = "fibaro;" + k[i].ToString();
+            i++;
+           
 
+            print("THIS IS a:" + a);
+
+            c = Encoding.ASCII.GetBytes(a);
             Thread.Sleep(1000);
             print("SENDING : " + a);
             fibaro.Send(c, c.Length);

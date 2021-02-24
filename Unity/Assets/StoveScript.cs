@@ -33,10 +33,11 @@ public class StoveScript : SensorScript
         try
         {
 
-            this.watt = script.getModel().getInfo(base.sensorID)[0];    
+            this.watt = script.getModel().getInfo(base.sensorID)[1];    
+            
 
 
-            if (this.watt > 0)
+            if (this.watt > 10)
             {
                 rend.material.SetColor("_Color",red);
             }
@@ -48,7 +49,7 @@ public class StoveScript : SensorScript
         }
         catch (Exception e)
         {
-            print(e);
+             print(base.sensorID + " :" + e);
 
 
         }
