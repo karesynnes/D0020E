@@ -1,0 +1,4 @@
+C:\Users\Isak\source\repos\Fibaro Server Emulator\Debug\Fibaro Server Emulator.exe
+C:\Users\Isak\source\repos\Fibaro Server Emulator\Debug\Fibaro Server Emulator.pdb
+C:\Users\Isak\Documents\D0020E\Fibaro Server Emulator\Debug\Fibaro Server Emulator.exe
+C:\Users\Isak\Documents\D0020E\Fibaro Server Emulator\Debug\Fibaro Server Emulator.pdb
