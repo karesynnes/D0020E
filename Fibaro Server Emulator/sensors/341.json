@@ -1,5 +1,8 @@
 {
 	"properties": {
+		"energy": 0.00,
+		"lastBreached": 0.00,
+		"power": 0.00,
 		"value": 7331.00
 	}
 }

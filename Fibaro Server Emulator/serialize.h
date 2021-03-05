@@ -18,36 +18,19 @@ void serializeAll(SL* sensor_list)
 		if (fp = fopen(fileName, "w"))
 		{
 			fprintf(fp, "{\n");																							//Prints to file
-			fprintf(fp, "\t\"properties\": {\n");																	//Hardcoded to be properties
-			if (sensor_list->prop->energy)
-			{
-				fprintf(fp, "\t\t\"energy\": %.2f", sensor_list->prop->energy);
-				if (sensor_list->prop->lastBreached || sensor_list->prop->power || sensor_list->prop->value)			//Adds comma and newline if there are more elements to write
-				{
-					fprintf(fp, ",\n");
-				}
-			}
-			if (sensor_list->prop->lastBreached)
-			{
-				fprintf(fp, "\t\t\"lastBreached\": %.2f", sensor_list->prop->lastBreached);								//Adds comma and newline if there are more elements to write
-				if (sensor_list->prop->power || sensor_list->prop->value)
-				{
-					fprintf(fp, ",\n");
-				}
-			}
-			if (sensor_list->prop->power)
-			{
-				fprintf(fp, "\t\t\"power\": %.2f", sensor_list->prop->power);											//Adds comma and newline if there are more elements to write
-				if (sensor_list->prop->value)
-				{
-					fprintf(fp, ",\n");
-				}
-			}
-			if (sensor_list->prop->value)
-			{
-				fprintf(fp, "\t\t\"value\": %.2f", sensor_list->prop->value);
-			}
-			fprintf(fp, "\n\t}\n}");																				//Prints closing stuff
+			fprintf(fp, "\t\"properties\": {\n");																		//Hardcoded to be properties
+
+			fprintf(fp, "\t\t\"energy\": %.2f", sensor_list->prop->energy);
+			fprintf(fp, ",\n");																							//Adds comma and newline since there are more elements to write
+
+			fprintf(fp, "\t\t\"lastBreached\": %.2f", sensor_list->prop->lastBreached);									//Adds comma and newline since there are more elements to write
+			fprintf(fp, ",\n");
+
+			fprintf(fp, "\t\t\"power\": %.2f", sensor_list->prop->power);												//Adds comma and newline since there are more elements to write
+			fprintf(fp, ",\n");
+
+			fprintf(fp, "\t\t\"value\": %.2f", sensor_list->prop->value);
+			fprintf(fp, "\n\t}\n}");																					//Prints closing stuff
 		}
 		if (fp)
 		{
@@ -69,36 +52,19 @@ void serializeNode(SL* sensor_list, int id)
 		if (fp = fopen(fileName, "w"))
 		{
 			fprintf(fp, "{\n");																							//Prints to file
-			fprintf(fp, "\t\"properties\": {\n");																	//Hardcoded to be properties
-			if (sensor_list->prop->energy)
-			{
-				fprintf(fp, "\t\t\"energy\": %.2f", sensor_list->prop->energy);
-				if (sensor_list->prop->lastBreached || sensor_list->prop->power || sensor_list->prop->value)			//Adds comma and newline if there are more elements to write
-				{
-					fprintf(fp, ",\n");
-				}
-			}
-			if (sensor_list->prop->lastBreached)
-			{
-				fprintf(fp, "\t\t\"lastBreached\": %.2f", sensor_list->prop->lastBreached);								//Adds comma and newline if there are more elements to write
-				if (sensor_list->prop->power || sensor_list->prop->value)
-				{
-					fprintf(fp, ",\n");
-				}
-			}
-			if (sensor_list->prop->power)
-			{
-				fprintf(fp, "\t\t\"power\": %.2f", sensor_list->prop->power);											//Adds comma and newline if there are more elements to write
-				if (sensor_list->prop->value)
-				{
-					fprintf(fp, ",\n");
-				}
-			}
-			if (sensor_list->prop->value)
-			{
-				fprintf(fp, "\t\t\"value\": %.2f", sensor_list->prop->value);
-			}
-			fprintf(fp, "\n\t}\n}");																				//Prints closing stuff
+			fprintf(fp, "\t\"properties\": {\n");																		//Hardcoded to be properties
+
+			fprintf(fp, "\t\t\"energy\": %.2f", sensor_list->prop->energy);
+			fprintf(fp, ",\n");																							//Adds comma and newline since there are more elements to write
+
+			fprintf(fp, "\t\t\"lastBreached\": %.2f", sensor_list->prop->lastBreached);									//Adds comma and newline since there are more elements to write
+			fprintf(fp, ",\n");
+
+			fprintf(fp, "\t\t\"power\": %.2f", sensor_list->prop->power);												//Adds comma and newline since there are more elements to write
+			fprintf(fp, ",\n");
+
+			fprintf(fp, "\t\t\"value\": %.2f", sensor_list->prop->value);
+			fprintf(fp, "\n\t}\n}");																					//Prints closing stuff
 		}
 		if (fp)
 		{
