@@ -18,7 +18,7 @@ void serializeAll(SL* sensor_list)
 		if (fp = fopen(fileName, "w"))
 		{
 			fprintf(fp, "{\n");																							//Prints to file
-			fprintf(fp, "\t\"properties\": [\n\t{\n");																	//Hardcoded to be properties
+			fprintf(fp, "\t\"properties\": {\n");																	//Hardcoded to be properties
 			if (sensor_list->prop->energy)
 			{
 				fprintf(fp, "\t\t\"energy\": %.2f", sensor_list->prop->energy);
@@ -47,7 +47,7 @@ void serializeAll(SL* sensor_list)
 			{
 				fprintf(fp, "\t\t\"value\": %.2f", sensor_list->prop->value);
 			}
-			fprintf(fp, "\n\t}\n\t]\n}");																				//Prints closing stuff
+			fprintf(fp, "\n\t}\n}");																				//Prints closing stuff
 		}
 		if (fp)
 		{
@@ -69,7 +69,7 @@ void serializeNode(SL* sensor_list, int id)
 		if (fp = fopen(fileName, "w"))
 		{
 			fprintf(fp, "{\n");																							//Prints to file
-			fprintf(fp, "\t\"properties\": [\n\t{\n");																	//Hardcoded to be properties
+			fprintf(fp, "\t\"properties\": {\n");																	//Hardcoded to be properties
 			if (sensor_list->prop->energy)
 			{
 				fprintf(fp, "\t\t\"energy\": %.2f", sensor_list->prop->energy);
@@ -98,7 +98,7 @@ void serializeNode(SL* sensor_list, int id)
 			{
 				fprintf(fp, "\t\t\"value\": %.2f", sensor_list->prop->value);
 			}
-			fprintf(fp, "\n\t}\n\t]\n}");																				//Prints closing stuff
+			fprintf(fp, "\n\t}\n}");																				//Prints closing stuff
 		}
 		if (fp)
 		{

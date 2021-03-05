@@ -1,8 +1,6 @@
 {
-	"properties": [
-	{
-		"power": 55.00,
+	"properties": {
+		"power": 150.00,
 		"value": 35.50
 	}
-	]
 }

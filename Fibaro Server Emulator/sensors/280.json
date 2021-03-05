@@ -1,8 +1,6 @@
 {
-	"properties": [
-	{
+	"properties": {
 		"energy": 150.00,
 		"power": 13.37
 	}
-	]
 }
