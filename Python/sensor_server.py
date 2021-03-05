@@ -59,7 +59,7 @@ class ThreadingUDPServer(socketserver.ThreadingMixIn, socketserver.UDPServer):
 
 if __name__ == "__main__":
     
-    HOST = "130.240.114.52"
+    HOST = "127.0.0.1"
     PORT = 42069
 
     server = ThreadingUDPServer((HOST, PORT), ThreadedUDPHandler)
