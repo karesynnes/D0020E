@@ -69,7 +69,7 @@ public class CommunicationScript : MonoBehaviour
     {
         
         fibaro = new UdpClient(fibaroPort);
-        fibaro.Connect("130.240.114.52",fibaroPort);
+        fibaro.Connect("127.0.0.1",fibaroPort);
 
         string a = "fibaro;";
 
@@ -114,7 +114,7 @@ public class CommunicationScript : MonoBehaviour
 
         widefind = new UdpClient(widefindPort);
 
-        fibaro.Connect("130.240.114.52",widefindPort);
+        fibaro.Connect("127.0.0.1",widefindPort);
 
         string a = "widefind;2"; //2 är bara temporärt
 
