@@ -19,20 +19,18 @@ class ThreadedUDPHandler(socketserver.BaseRequestHandler):
         if (self.data[0] == "fibaro"):
             
             try:
-        
                 self.id = int(self.data[1])
                 self.res = fibaro.fibaro_conn(self.id)
 
             except Exception as e:
                 self.res = str(self.id) + ";error_sensor"
 
-
             with print_lock:
                 print("Sending: {} to {}".format(self.res, self.client_address[0]))
         
             self.response = bytes(self.res, "utf-8")
             self.client_socket.sendto(self.response, self.client_address)
-            
+
 
         elif (self.data[0] == "widefind"):
 
@@ -49,24 +47,22 @@ class ThreadedUDPHandler(socketserver.BaseRequestHandler):
             except Exception as e:
                 with print_lock:
                     print(e)
-            
-            
-
-class ThreadingUDPServer(socketserver.ThreadingMixIn, socketserver.UDPServer):    
-    pass
 
         
-
-if __name__ == "__main__":
+class ThreadedUDPServer(socketserver.ThreadingMixIn, socketserver.UDPServer):    
+    pass
     
-    HOST = "127.0.0.1"
+
+if __name__=="__main__":
+    
+    HOST = "130.240.114.52"
     PORT = 42069
 
-    server = ThreadingUDPServer((HOST, PORT), ThreadedUDPHandler)
+    server = ThreadedUDPServer((HOST, PORT), ThreadedUDPHandler)
 
     with server:
 
-        try:
+         try:
 
             server_thread = threading.Thread(target = server.serve_forever)
 
@@ -74,20 +70,19 @@ if __name__ == "__main__":
             server_thread.start()
         
             print("Server loop in thread: {}".format(server_thread.name))
-
-        
+ 
             try:
 
                 while server_thread.is_alive():
                     pass
                 
             except KeyboardInterrupt:
-                server.shutdown()
-                server_thread.join()
-                print("Thread {} running: {}".format(server_thread.name, server_thread.is_alive()))
+                    server.shutdown()
+                    server_thread.join()
+                    print("Thread {} running: {}".format(server_thread.name, server_thread.is_alive()))
 
-        except Exception as e:
+         except Exception as e:
             print(e)
             
-            
+
 

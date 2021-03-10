@@ -4,7 +4,6 @@ import time
 import urllib3
 
 fibaro_ip = "130.240.114.44"
-useLocal = False
 
 
 sensor_dictionary = {
@@ -150,138 +149,105 @@ def fibaro_conn(id):
 
 def get_switch_sensor_data(id, sensor):
 
-    if(useLocal):
-        with open("Fibaro Server Emulator/sensors/"+str(id)+".json") as json_file:
-            data = json.load(json_file)
+    try:
+            
+        resp = requests.get("http://"+fibaro_ip+"/api/devices/"+str(id), auth=("unicorn@ltu.se", "jSCN47bC"), timeout = 5)
+
+    except Exception as e:
+        print("timeout", e)
+        raise AttributeError(e)
+            
+    if(resp.status_code != 200):
+        print("Error: ", resp.status_code)
+        raise AttributeError(str(resp.status_code))
+        
+    else:
+        data = resp.json()
         temp_str = str(id) + ";" + sensor + ";" + str(data['properties']['value']) + ";" + str(data['properties']['power'])
         return temp_str
-    else:
-        try:
-            
-            resp = requests.get("http://"+fibaro_ip+"/api/devices/"+str(id), auth=("unicorn@ltu.se", "jSCN47bC"), timeout = 5)
-
-        except Exception as e:
-            print("timeout", e)
-            raise AttributeError(e)
-            
-        if(resp.status_code != 200):
-            print("Error: ", resp.status_code)
-            raise AttributeError(str(resp.status_code))
-        
-        else:
-            data = resp.json()
-            temp_str = str(id) + ";" + sensor + ";" + str(data['properties']['value']) + ";" + str(data['properties']['power'])
-            return temp_str
 
     
 
 def get_power_sensor_data(id, sensor):
 
-    if(useLocal):
-        with open("Fibaro Server Emulator/sensors/"+str(id)+".json") as json_file:
-            data = json.load(json_file)
+    try:
+            
+        resp = requests.get("http://"+fibaro_ip+"/api/devices/"+str(id), auth=("unicorn@ltu.se", "jSCN47bC"), timeout = 5)
+
+    except Exception as e:
+        print("timeout", e)
+        raise AttributeError(e)
+        
+    if(resp.status_code != 200):
+        print("Error: ", resp.status_code)
+        raise AttributeError(str(resp.status_code))
+        
+    else:
+        data = resp.json()
         temp_str = str(id) + ";" + sensor + ";" + str(data['properties']['energy']) + ";" + str(data['properties']['power'])
         return temp_str
-    else:
-        try:
-            
-            resp = requests.get("http://"+fibaro_ip+"/api/devices/"+str(id), auth=("unicorn@ltu.se", "jSCN47bC"), timeout = 5)
-
-        except Exception as e:
-            print("timeout", e)
-            raise AttributeError(e)
-        
-        if(resp.status_code != 200):
-            print("Error: ", resp.status_code)
-            raise AttributeError(str(resp.status_code))
-        
-        else:
-            data = resp.json()
-            temp_str = str(id) + ";" + sensor + ";" + str(data['properties']['energy']) + ";" + str(data['properties']['power'])
-            return temp_str
 
 
 
 def get_state_sensor_data(id, sensor):
 
-    if(useLocal):
-        with open("Fibaro Server Emulator/sensors/"+str(id)+".json") as json_file:
-            data = json.load(json_file)
+    try:
+            
+        resp = requests.get("http://"+fibaro_ip+"/api/devices/"+str(id), auth=("unicorn@ltu.se", "jSCN47bC"), timeout = 5)
+
+    except Exception as e:
+        print("timeout", e)
+        raise AttributeError(e)
+        
+    if(resp.status_code != 200):
+        print("Error: ", resp.status_code)
+        raise AttributeError(str(resp.status_code))
+        
+    else:
+        data = resp.json()
         temp_str = str(id) + ";" + sensor + ";" + str(data['properties']['value']) + ";" + str(data['properties']['lastBreached'])
         return temp_str
-    else:
-        try:
-            
-            resp = requests.get("http://"+fibaro_ip+"/api/devices/"+str(id), auth=("unicorn@ltu.se", "jSCN47bC"), timeout = 5)
-
-        except Exception as e:
-            print("timeout", e)
-            raise AttributeError(e)
-        
-        if(resp.status_code != 200):
-            print("Error: ", resp.status_code)
-            raise AttributeError(str(resp.status_code))
-        
-        else:
-            data = resp.json()
-            temp_str = str(id) + ";" + sensor + ";" + str(data['properties']['value']) + ";" + str(data['properties']['lastBreached'])
-            return temp_str
 
 
 def get_other_sensor_data(id, sensor):
 
-    if(useLocal):
-        with open("Fibaro Server Emulator/sensors/"+str(id)+".json") as json_file:
-            data = json.load(json_file)
+    try:
+            
+        resp = requests.get("http://"+fibaro_ip+"/api/devices/"+str(id), auth=("unicorn@ltu.se", "jSCN47bC"), timeout = 5)
+
+    except Exception as e:
+        print("timeout", e)
+        raise AttributeError(e)
+        
+    if(resp.status_code != 200):
+        print("Error: ", resp.status_code)
+        raise AttributeError(str(resp.status_code))
+        
+    else:
+        data = resp.json()
         temp_str = str(id) + ";" + sensor + ";" + str(data['properties']['value'])
         return temp_str
-    else:
-        try:
-            
-            resp = requests.get("http://"+fibaro_ip+"/api/devices/"+str(id), auth=("unicorn@ltu.se", "jSCN47bC"), timeout = 5)
-
-        except Exception as e:
-            print("timeout", e)
-            raise AttributeError(e)
-        
-        if(resp.status_code != 200):
-            print("Error: ", resp.status_code)
-            raise AttributeError(str(resp.status_code))
-        
-        else:
-            data = resp.json()
-            temp_str = str(id) + ";" + sensor + ";" + str(data['properties']['value'])
-            return temp_str
 
 
 def get_dual_sensor_data(id, sensor, id2):
 
-    if(useLocal):
-        with open("Fibaro Server Emulator/sensors/"+str(id)+".json") as json_file:
-            data1 = json.load(json_file)
-        with open("Fibaro Server Emulator/sensors/"+str(id2)+".json") as json_file:
-            data2 = json.load(json_file)
+    try:
             
+        resp1 = requests.get("http://"+fibaro_ip+"/api/devices/"+str(id), auth=("unicorn@ltu.se", "jSCN47bC"), timeout = 5)
+        resp2 = requests.get("http://"+fibaro_ip+"/api/devices/"+str(id2), auth=("unicorn@ltu.se", "jSCN47bC"), timeout = 5)
+
+    except Exception as e:
+        print("timeout", e)
+        raise AttributeError(e)
+        
+    if((resp1.status_code or resp2.status_code) != 200):
+        print("Error: ", resp1.status_code, resp2.status_code)
+        raise AttributeError(str(resp1.status_code), str(resp2.status_code))
+        
+    else:
+        data1 = resp1.json()
+        data2 = resp2.json()            
         temp_str = str(id) + ";" + sensor + ";" + str(data1['properties']['value']) + ";" + str(data1['properties']['power']) + ";" + str(data2['properties']['value']) + ";" + str(data2['properties']['lastBreached'])
         return temp_str
-    else:
-        try:
-            
-            resp1 = requests.get("http://"+fibaro_ip+"/api/devices/"+str(id), auth=("unicorn@ltu.se", "jSCN47bC"), timeout = 5)
-            resp2 = requests.get("http://"+fibaro_ip+"/api/devices/"+str(id2), auth=("unicorn@ltu.se", "jSCN47bC"), timeout = 5)
-
-        except Exception as e:
-            print("timeout", e)
-            raise AttributeError(e)
-        
-        if((resp1.status_code or resp2.status_code) != 200):
-            print("Error: ", resp1.status_code, resp2.status_code)
-            raise AttributeError(str(resp1.status_code), str(resp2.status_code))
-        
-        else:
-            data1 = resp1.json()
-            data2 = resp2.json()            
-            temp_str = str(id) + ";" + sensor + ";" + str(data1['properties']['value']) + ";" + str(data1['properties']['power']) + ";" + str(data2['properties']['value']) + ";" + str(data2['properties']['lastBreached'])
-            return temp_str
 
        
