@@ -29,17 +29,18 @@ class widefind:
         self.json_object = json.loads(msg);
         if(self.json_object["message"][0:6] == "REPORT"):
             self.a = self.json_object["message"].split(",")
-            self.x = self.a[2]
-            self.y = self.a[3]
-            self.z = self.a[4]
+            if (str(self.a[0][7:23]) == "67BA3CF4E0622323"):
+                self.x = self.a[2]
+                self.y = self.a[3]
+                self.z = self.a[4]
 
-            self.res = "widefind;" + self.x + ";" + self.y + ";" + self.z
+                self.res = "widefind;" + self.x + ";" + self.y + ";" + self.z
 
-            with self.print_lock:
-                print("Sending: {} to {}".format(self.res, self.client_address[0]))
+                with self.print_lock:
+                    print("Sending: {} to {}".format(self.res, self.client_address[0]))
                 
-            self.response = bytes(self.res, "utf-8")
-            self.client_socket.sendto(self.response, self.client_address)
+                self.response = bytes(self.res, "utf-8")
+                self.client_socket.sendto(self.response, self.client_address)
     
 
     def on_message(self, client, userdata, message):
