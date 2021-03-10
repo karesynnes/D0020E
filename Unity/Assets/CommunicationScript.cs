@@ -5,6 +5,7 @@ using System.Net;
 using System.Text;
 using System;
 using System.Threading;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class CommunicationScript : MonoBehaviour
@@ -18,6 +19,9 @@ public class CommunicationScript : MonoBehaviour
 
     int fibaroPort = 42069;
     int widefindPort = 42070;
+
+    bool widefindFlag = true;
+
 
     Model model;
 
@@ -39,6 +43,7 @@ public class CommunicationScript : MonoBehaviour
 
     void OnDestroy(){
 
+        widefindFlag = false;
         print("Killing recv thread");
         print("Killing sendThread");
         //widefindThread.Abort();
@@ -49,14 +54,16 @@ public class CommunicationScript : MonoBehaviour
     {
         model = new Model();
        
-        /*widefindThread = new Thread(new ThreadStart(ReceiveData));
+        widefindThread = new Thread(new ThreadStart(widefindComm));
         widefindThread.IsBackground = true;
-        widefindThread.Start();*/
+        widefindThread.Start();
  
 
         fibaroThread = new Thread(new ThreadStart(fibaroComm));
         fibaroThread.IsBackground = true;
         fibaroThread.Start();
+
+       
  
     }
 
@@ -69,7 +76,8 @@ public class CommunicationScript : MonoBehaviour
     {
         
         fibaro = new UdpClient(fibaroPort);
-        fibaro.Connect("130.240.114.52",fibaroPort);
+        fibaro.Connect("127.0.0.1", fibaroPort);
+        //fibaro.Connect("130.240.114.51", fibaroPort);
 
         string a = "fibaro;";
 
@@ -78,26 +86,23 @@ public class CommunicationScript : MonoBehaviour
         
        
         IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 0);
+        
         byte[] c;
 
         while(true){
-             i = i%(k.Length);
+            i = i%(k.Length);
             //print("Sending : " + a);
             a = "fibaro;" + k[i].ToString();
             i++;
-           
-
-            print("THIS IS a:" + a);
+            
 
             c = Encoding.ASCII.GetBytes(a);
-            Thread.Sleep(1000);
+            Thread.Sleep(100);
             print("SENDING : " + a);
             fibaro.Send(c, c.Length);
 
 
-
             byte[] data = fibaro.Receive(ref anyIP);
-  
                 
             string text = Encoding.UTF8.GetString(data);
             print("RECEIVING : " + text);
@@ -110,22 +115,45 @@ public class CommunicationScript : MonoBehaviour
 
     }
 
+
+    private void sendSubWidefind(){
+
+
+        bool tryAgain = true;
+        while(tryAgain){
+            if(widefindFlag){
+                try{
+                    print("SENT SUBSCRIBE TO SERVER WIDEFIND");
+                    string a = "widefind;5";
+                    byte [] c = Encoding.ASCII.GetBytes(a);
+
+                    widefind.Send(c, c.Length);
+                    tryAgain = false;
+                }
+                catch {
+                    print("Couldnt send widefind subscribe");
+                }
+            }
+       }
+
+        Task.Delay(5000).ContinueWith(t=> sendSubWidefind());
+    }
     private void widefindComm(){
 
         widefind = new UdpClient(widefindPort);
 
         fibaro.Connect("130.240.114.52",widefindPort);
 
-        string a = "widefind;2"; //2 är bara temporärt
-
-        byte[] c = Encoding.ASCII.GetBytes(a);
         IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 0);
+
+        
+        //subscribe to the widefind updates
+        sendSubWidefind();
+
 
         while(true){
 
-            Thread.Sleep(1000);
-
-            widefind.Send(c, c.Length);
+            
 
             byte[] data = widefind.Receive(ref anyIP);
   
@@ -142,4 +170,3 @@ public class CommunicationScript : MonoBehaviour
 
 
 }
-

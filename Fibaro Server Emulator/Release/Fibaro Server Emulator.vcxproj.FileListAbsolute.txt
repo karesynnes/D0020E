@@ -1,0 +1,2 @@
+C:\Users\Isak\source\repos\Fibaro server emulator\Release\Fibaro Server Emulator.exe
+C:\Users\Isak\Documents\D0020E\Fibaro Server Emulator\Release\Fibaro Server Emulator.exe
