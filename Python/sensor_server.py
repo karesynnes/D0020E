@@ -82,9 +82,9 @@ if __name__ == "__main__":
                     pass
                 
             except KeyboardInterrupt:
-                print("Thread {} running: {}".format(server_thread.name, server_thread.is_alive()))
                 server.shutdown()
                 server_thread.join()
+                print("Thread {} running: {}".format(server_thread.name, server_thread.is_alive()))
 
         except Exception as e:
             print(e)

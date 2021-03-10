@@ -6,7 +6,7 @@ flag = True
 def client(msg, ttl):
     
     socket1 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    address1 = ("130.240.114.52", 42069)
+    address1 = ("130.240.114.14", 42069)
 
 
     msg = bytes(msg, "utf-8")
