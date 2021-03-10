@@ -118,20 +118,24 @@ public class CommunicationScript : MonoBehaviour
 
     private void sendSubWidefind(){
 
-        if(widefindFlag){
-            try{
-                string a = "widefind;5";
-                byte [] c = Encoding.ASCII.GetBytes(a);
 
-                widefind.Send(c, c.Length);
-            }
-            catch {
-                print("Couldnt send widefind subscribe");
-            }
-        }
-       
+        bool tryAgain = true;
+        while(tryAgain){
+            if(widefindFlag){
+                try{
+                    string a = "widefind;5";
+                    byte [] c = Encoding.ASCII.GetBytes(a);
 
-        Task.Delay(4500).ContinueWith(t=> sendSubWidefind());
+                    widefind.Send(c, c.Length);
+                    tryAgain = false;
+                }
+                catch {
+                    print("Couldnt send widefind subscribe");
+                }
+            }
+       }
+
+        Task.Delay(5000).ContinueWith(t=> sendSubWidefind());
     }
     private void widefindComm(){
 
@@ -139,9 +143,6 @@ public class CommunicationScript : MonoBehaviour
 
         fibaro.Connect("130.240.114.52",widefindPort);
 
-        string a = "widefind;2"; //2 är bara temporärt
-
-        byte[] c = Encoding.ASCII.GetBytes(a);
         IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 0);
 
         
