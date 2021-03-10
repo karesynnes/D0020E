@@ -9,11 +9,11 @@ public class movePerson : SensorScript
 
     GameObject a;
     CommunicationScript script;
-
+    int[] newPos;
 
     void Start()
     {
-
+        newPos = new int[] {0,0,0};
         a = GameObject.Find("Main Camera");
 
         script = a.GetComponent<CommunicationScript>();
@@ -23,11 +23,13 @@ public class movePerson : SensorScript
     // Update is called once per frame
     void Update()
     {
-        int [] newPos = model.getInfo(base.sensorID);
-
-        this.pos = new Vector3(newPos[0], newPos[1], newPos[2]);
+        //newPos = model.getInfo(base.sensorID);
+        newPos[0] = (-1) * script.getModel().getInfo(-1)[1]/100 - 35;
+        newPos[1] = script.getModel().getInfo(-1)[2]/200;
+        newPos[2] = script.getModel().getInfo(-1)[0]/120 - 26;
+        //this.pos = new Vector3(newPos[0], 6, newPos[2]);
         
-        transform.eulerAngles = this.pos;
+        this.transform.position = new Vector3(newPos[0], 6, newPos[2]);
 
 
     }
