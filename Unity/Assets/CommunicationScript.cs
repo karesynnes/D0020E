@@ -54,9 +54,9 @@ public class CommunicationScript : MonoBehaviour
     {
         model = new Model();
        
-        /*widefindThread = new Thread(new ThreadStart(ReceiveData));
+        widefindThread = new Thread(new ThreadStart(widefindComm));
         widefindThread.IsBackground = true;
-        widefindThread.Start();*/
+        widefindThread.Start();
  
 
         fibaroThread = new Thread(new ThreadStart(fibaroComm));
@@ -123,6 +123,7 @@ public class CommunicationScript : MonoBehaviour
         while(tryAgain){
             if(widefindFlag){
                 try{
+                    print("SENT SUBSCRIBE TO SERVER WIDEFIND");
                     string a = "widefind;5";
                     byte [] c = Encoding.ASCII.GetBytes(a);
 
