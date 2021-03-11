@@ -38,7 +38,7 @@ public class FridgeScript : SensorScript
         try
         {
             //print(script.getModel().getInfo(base.sensorID));
-            print(base.sensorID);
+            //print(base.sensorID);
 
             this.open = script.getModel().getInfo(base.sensorID)[0];
 

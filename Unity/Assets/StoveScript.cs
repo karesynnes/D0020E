@@ -9,7 +9,7 @@ public class StoveScript : SensorScript
     GameObject a;
     CommunicationScript script;
     private Color red = new Color(1, 0, 0);
-    private Color grey = new Color(128, 128, 128);
+    private Color grey = new Color(1, 1, 1);
     GameObject one;
     GameObject two;
     GameObject three;
@@ -26,6 +26,10 @@ public class StoveScript : SensorScript
     void Start()
     {
         a = GameObject.Find("Main Camera");
+        one = GameObject.Find("one");
+        two = GameObject.Find("two");
+        three = GameObject.Find("three");
+        four = GameObject.Find("four");
 
         script = a.GetComponent<CommunicationScript>();
     }
