@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class cabinetScript : SensorScript
 {
-    int angle = 75;
+    int angle = 80;
     Transform left;
     Transform right;
     private int open;
@@ -51,13 +51,13 @@ public class cabinetScript : SensorScript
 
             if (this.open == 1)
             {
-                left.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.x, angle);
-                right.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.x, -angle);
+                left.eulerAngles = new Vector3(left.eulerAngles.x, left.eulerAngles.y, angle);
+                right.eulerAngles = new Vector3(right.eulerAngles.x, right.eulerAngles.y, -angle);
             }
             else
             {
-                left.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.x, 0);
-                right.eulerAngles = new Vector3(transform.eulerAngles.x, transform.eulerAngles.x, 0);
+                left.eulerAngles = new Vector3(left.eulerAngles.x, left.eulerAngles.y, 0);
+                right.eulerAngles = new Vector3(right.eulerAngles.x, right.eulerAngles.y, 0);
             }
 
         }

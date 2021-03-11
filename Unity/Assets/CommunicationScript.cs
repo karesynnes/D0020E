@@ -76,12 +76,12 @@ public class CommunicationScript : MonoBehaviour
     {
         
         fibaro = new UdpClient(fibaroPort);
-        fibaro.Connect("130.240.74.55", fibaroPort);
+        fibaro.Connect("130.240.114.14", fibaroPort);
         //fibaro.Connect("130.240.114.51", fibaroPort);
 
         string a = "fibaro;";
 
-        int[] k = {299,358};
+        int[] k = {299,358,352,360,366};
         int i = 0;
         
        
