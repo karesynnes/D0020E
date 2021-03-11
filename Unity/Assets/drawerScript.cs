@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System;
 using UnityEngine;
 
-public class bestickScript : SensorScript
+public class drawerScript : SensorScript
 {
     private GameObject a, cube;
     private int open;
@@ -11,7 +11,7 @@ public class bestickScript : SensorScript
     private int yeboi;
     //private Renderer cubeRenderer;
 
-    public bestickScript()
+    public drawerScript()
     {
         this.open = 0;
         this.yeboi = 0;
