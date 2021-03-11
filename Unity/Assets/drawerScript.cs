@@ -53,7 +53,7 @@ public class drawerScript : SensorScript
 
             if (this.open == 1)
             {
-                //transform.eulerAngles = new Vector3(transform.eulerAngles.x, 45, transform.eulerAngles.z);
+                transform.eulerAngles = new Vector3(transform.eulerAngles.x, 45, transform.eulerAngles.z);
                 //transform.SetPositionAndRotation(new Vector3(0, 0, yeboi), new Quaternion());
 
                 //Get the Renderer component from the new cube

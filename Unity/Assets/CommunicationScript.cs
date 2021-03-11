@@ -81,7 +81,7 @@ public class CommunicationScript : MonoBehaviour
 
         string a = "fibaro;";
 
-        int[] k = {299,358,352,360,366,322,326};
+        int[] k = {299,358,352,360,366,322,326,310,354,382,372,374,376};
         int i = 0;
         
        
