@@ -1,11 +1,34 @@
+#
+#This application handles all communication with the Fibaro REST api for the fibaro home center hosted on the 'LTU-H2Al' network.
+#This application will be started and used by the 'sensor_server.py' application which must be run with 'fibaro.py' and 'widefind.py' in the same
+#directory and the interchange of data between the components must follow current structures.
+#Both of these separate python files accually contain the functionallty for communicating with both fibaro and widefind systems
+#
+#This application was written as a part of the 'Unreal visualization of a smart home' project active during the course D0020E from 11-2020 to
+#03-2021.
+#
+#Author: Jakob Moregård
+#
+#If you have any issue with how this code is written, don't flame me, just work to improve areas you think are lacking 5head.
+#
+
 import requests
 import json
 import time
 import urllib3
 
+#The ip that fibaro home center is hosted on.
 fibaro_ip = "130.240.114.44"
 
-
+#This dictionary is essential, it contains all current available sensors in room u121.
+#If more sensors have been added or current onces changed (glhf) one must manually go over all sensors
+#on fibaro home center and add them to the dictionary.
+#The sensors are categorized depending on what the do, or more accurately, how the json object they return is structured.
+#switch_sensors are outlets, they look like on/off button in fibaro home center
+#power_sensors are power readings i.e. stove, stove fan etc..
+#state_sensors are doors, cupboards, drawers etc...
+#other_sensors are humidity, temperature, light levels etc...
+#dual_sensors are two sensors that represent the same object i.e. microwave door and power.
 sensor_dictionary = {
     "24" : ["switch_sensor"],
     "30" : ["switch_sensor"],
@@ -82,6 +105,7 @@ sensor_dictionary = {
     "156" : ["dual_sensor", "314"] 
     }
 
+#method gets the type of sensor from the dictionary based on id
 def get_sensor_type(id):
     
     for key in sensor_dictionary:
@@ -91,7 +115,7 @@ def get_sensor_type(id):
 
     raise KeyError
     
-
+#main method of this application, this is called when the server wants data of a specific sensor.
 def fibaro_conn(id):
     
     while(True):
@@ -105,9 +129,10 @@ def fibaro_conn(id):
             except KeyError:
                 print("Could not find id")
                 sensor_type = None
-
+            
             try:
-
+                
+                #checks what type of sensor belong to the id and calls appropriate type method
                 if (sensor_type == None):
                     print("no sensor type")
 
@@ -146,11 +171,12 @@ def fibaro_conn(id):
             
         
     
-
+#method for retrieving switch data 
 def get_switch_sensor_data(id, sensor):
 
     try:
-            
+
+        #REST api call     
         resp = requests.get("http://"+fibaro_ip+"/api/devices/"+str(id), auth=("unicorn@ltu.se", "jSCN47bC"), timeout = 5)
 
     except Exception as e:
@@ -163,15 +189,17 @@ def get_switch_sensor_data(id, sensor):
         
     else:
         data = resp.json()
+        #this parsing of data is what separates sensor types
         temp_str = str(id) + ";" + sensor + ";" + str(data['properties']['value']) + ";" + str(data['properties']['power'])
         return temp_str
 
     
-
+#method for retrieving power data
 def get_power_sensor_data(id, sensor):
 
     try:
-            
+
+        #REST api call     
         resp = requests.get("http://"+fibaro_ip+"/api/devices/"+str(id), auth=("unicorn@ltu.se", "jSCN47bC"), timeout = 5)
 
     except Exception as e:
@@ -184,15 +212,17 @@ def get_power_sensor_data(id, sensor):
         
     else:
         data = resp.json()
+        #this parsing of data is what separates sensor types
         temp_str = str(id) + ";" + sensor + ";" + str(data['properties']['energy']) + ";" + str(data['properties']['power'])
         return temp_str
 
 
-
+#method for retrieving state data
 def get_state_sensor_data(id, sensor):
 
     try:
-            
+
+        #REST api call     
         resp = requests.get("http://"+fibaro_ip+"/api/devices/"+str(id), auth=("unicorn@ltu.se", "jSCN47bC"), timeout = 5)
 
     except Exception as e:
@@ -205,14 +235,17 @@ def get_state_sensor_data(id, sensor):
         
     else:
         data = resp.json()
+        #this parsing of data is what separates sensor types
         temp_str = str(id) + ";" + sensor + ";" + str(data['properties']['value']) + ";" + str(data['properties']['lastBreached'])
         return temp_str
 
 
+#method for retrieving other data
 def get_other_sensor_data(id, sensor):
 
     try:
-            
+
+        #REST api call 
         resp = requests.get("http://"+fibaro_ip+"/api/devices/"+str(id), auth=("unicorn@ltu.se", "jSCN47bC"), timeout = 5)
 
     except Exception as e:
@@ -225,14 +258,17 @@ def get_other_sensor_data(id, sensor):
         
     else:
         data = resp.json()
+        #this parsing of data is what separates sensor types
         temp_str = str(id) + ";" + sensor + ";" + str(data['properties']['value'])
         return temp_str
 
 
+#method for retrieving dual data
 def get_dual_sensor_data(id, sensor, id2):
 
     try:
-            
+
+        #REST api call     
         resp1 = requests.get("http://"+fibaro_ip+"/api/devices/"+str(id), auth=("unicorn@ltu.se", "jSCN47bC"), timeout = 5)
         resp2 = requests.get("http://"+fibaro_ip+"/api/devices/"+str(id2), auth=("unicorn@ltu.se", "jSCN47bC"), timeout = 5)
 
@@ -246,7 +282,8 @@ def get_dual_sensor_data(id, sensor, id2):
         
     else:
         data1 = resp1.json()
-        data2 = resp2.json()            
+        data2 = resp2.json()
+        #this parsing of data is what separates sensor types
         temp_str = str(id) + ";" + sensor + ";" + str(data1['properties']['value']) + ";" + str(data1['properties']['power']) + ";" + str(data2['properties']['value']) + ";" + str(data2['properties']['lastBreached'])
         return temp_str
 
