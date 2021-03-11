@@ -2040,6 +2040,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 551450892}
+  - component: {fileID: 551450893}
   m_Layer: 0
   m_Name: freezer
   m_TagString: Untagged
@@ -2062,6 +2063,19 @@ Transform:
   m_Father: {fileID: 406882377}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &551450893
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 551450891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55e6564a3ebcce74cb4ac5764b39d29d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensorID: 326
 --- !u!1 &573789268
 GameObject:
   m_ObjectHideFlags: 0
@@ -3255,7 +3269,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: 0, y: 0.9396927, z: -0.3420201, w: 0}
-  m_LocalPosition: {x: 2.1, y: 25.6, z: 4.7}
+  m_LocalPosition: {x: 2.1, y: 34.7, z: 15.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -4840,6 +4854,36 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1367722716}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1371843195
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1371843196}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1371843196
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1371843195}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1989758625}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1422115154
 GameObject:
   m_ObjectHideFlags: 0
@@ -4867,7 +4911,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1422115154}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
-  m_LocalPosition: {x: -0.358, y: -0.145, z: 0.5}
+  m_LocalPosition: {x: -0.358, y: -0.145, z: 4}
   m_LocalScale: {x: 0.14, y: 0.8, z: 1}
   m_Children: []
   m_Father: {fileID: 88794889}
@@ -5786,6 +5830,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1630469289}
+  - component: {fileID: 1630469290}
   m_Layer: 0
   m_Name: fridgeDoor
   m_TagString: Untagged
@@ -5808,6 +5853,19 @@ Transform:
   m_Father: {fileID: 406882377}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1630469290
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1630469288}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55e6564a3ebcce74cb4ac5764b39d29d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sensorID: 322
 --- !u!1 &1645714655
 GameObject:
   m_ObjectHideFlags: 0
@@ -7105,12 +7163,12 @@ PrefabInstance:
     - target: {fileID: -8380157826906577798, guid: f0e2e5f308dbaae43b207440e212b230,
         type: 3}
       propertyPath: m_Name
-      value: platta
+      value: four
       objectReference: {fileID: 0}
     - target: {fileID: -5568371526223589888, guid: f0e2e5f308dbaae43b207440e212b230,
         type: 3}
       propertyPath: m_Name
-      value: platta
+      value: one
       objectReference: {fileID: 0}
     - target: {fileID: -1461304994638716399, guid: f0e2e5f308dbaae43b207440e212b230,
         type: 3}
@@ -7130,12 +7188,12 @@ PrefabInstance:
     - target: {fileID: 8513859187771203891, guid: f0e2e5f308dbaae43b207440e212b230,
         type: 3}
       propertyPath: m_Name
-      value: platta
+      value: two
       objectReference: {fileID: 0}
     - target: {fileID: 8700725330082129686, guid: f0e2e5f308dbaae43b207440e212b230,
         type: 3}
       propertyPath: m_Name
-      value: platta
+      value: three
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f0e2e5f308dbaae43b207440e212b230, type: 3}

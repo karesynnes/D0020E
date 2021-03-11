@@ -9,7 +9,11 @@ public class StoveScript : SensorScript
     GameObject a;
     CommunicationScript script;
     private Color red = new Color(1, 0, 0);
-    private Color green = new Color(0, 1, 0);
+    private Color grey = new Color(128, 128, 128);
+    GameObject one;
+    GameObject two;
+    GameObject three;
+    GameObject four;
     public StoveScript()
     {
 
@@ -29,7 +33,7 @@ public class StoveScript : SensorScript
     // Update is called once per frame
     void Update()
     {
-        var rend = this.GetComponent<Renderer>();
+     
         try
         {
 
@@ -39,11 +43,18 @@ public class StoveScript : SensorScript
 
             if (this.watt > 10)
             {
-                rend.material.SetColor("_Color",red);
+                one.GetComponent<Renderer>().material.SetColor("_Color",red);
+                two.GetComponent<Renderer>().material.SetColor("_Color", red);
+                three.GetComponent<Renderer>().material.SetColor("_Color", red);
+                four.GetComponent<Renderer>().material.SetColor("_Color", red);
+
             }
             else
             {
-                rend.material.SetColor("_Color", green);
+                one.GetComponent<Renderer>().material.SetColor("_Color", grey);
+                two.GetComponent<Renderer>().material.SetColor("_Color", grey);
+                three.GetComponent<Renderer>().material.SetColor("_Color", grey);
+                four.GetComponent<Renderer>().material.SetColor("_Color", grey);
             }
 
         }

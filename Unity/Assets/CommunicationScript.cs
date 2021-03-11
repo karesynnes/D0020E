@@ -81,14 +81,14 @@ public class CommunicationScript : MonoBehaviour
 
         string a = "fibaro;";
 
-        int[] k = {299,358,352,360,366};
+        int[] k = {299,358,352,360,366,322,326};
         int i = 0;
         
        
         IPEndPoint anyIP = new IPEndPoint(IPAddress.Any, 0);
         
         byte[] c;
-        sendSubWidefind();
+        //sendSubWidefind();
         while(true){
             i = i%(k.Length);
             //print("Sending : " + a);
